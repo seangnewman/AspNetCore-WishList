@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WishList.Data;
 
 namespace WishList
 {
@@ -19,6 +15,9 @@ namespace WishList
         {
             //Add support for MVC Middleware
             services.AddMvc();
+            services.AddDbContext<ApplicationDbContext>(
+                options => options.UseInMemoryDatabase("WishList")
+            );
 
         }
 
@@ -37,7 +36,9 @@ namespace WishList
 
             // Add Routing  by replacing app.Run
             app.UseRouting();
-            app.UseEndpoints( endpoints => {  endpoints.MapDefaultControllerRoute();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }
