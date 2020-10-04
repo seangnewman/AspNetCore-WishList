@@ -37,10 +37,7 @@ namespace WishList
 
             // Add Routing  by replacing app.Run
             app.UseRouting();
-
-            // Add endpoints
-            app.UseEndpoints( endpoints => { 
-                endpoints.MapDefaultControllerRoute();
+            app.UseEndpoints( endpoints => {  endpoints.MapDefaultControllerRoute();
             });
         }
     }
